@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>tech.aegean.next</groupId>
+    <artifactId>aegean-next-nirvana</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>nirvana-order</module>
+        <module>nirvana-product</module>
+        <module>nirvana-member</module>
+        <module>nirvana-page</module>
+        <module>nirvana-storage</module>
+        <module>nirvana-finance</module>
+        <module>nirvana-interaction</module>
+        <module>nirvana-offline</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <version.aegean.next>1.0.0-SNAPSHOT</version.aegean.next>
+        <version.servlet-api>4.0.1</version.servlet-api>
+        <version.mysql>8.0.16</version.mysql>
+        <version.mybatis-plus>3.3.2</version.mybatis-plus>
+        <version.druid>1.1.22</version.druid>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>5.2.8.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${version.servlet-api}</version>
+        </dependency>
+
+        <!-- ORM 依赖-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>${version.mybatis-plus}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>${version.druid}</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${version.mysql}</version>
+        </dependency>
+    </dependencies>
+
+</project>
