@@ -21,7 +21,6 @@ package tech.aegean.next.nirvana.member.base.service;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 import tech.aegean.next.nirvana.member.base.entity.login.MemberLoginRequest;
 import tech.aegean.next.nirvana.member.base.entity.login.MemberLoginResult;
 import tech.aegean.next.origin.base.entity.Result;
