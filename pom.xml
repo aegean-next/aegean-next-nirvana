@@ -33,7 +33,7 @@
         <license.sectionDelimiter>#</license.sectionDelimiter>
         <license.processStartTag>Start tag</license.processStartTag>
         <license.processEndTag>End tag</license.processEndTag>
-        <aegean.next.origin>1.0.0-SNAPSHOT</aegean.next.origin>
+        <version.aegean.next>1.0.0-SNAPSHOT</version.aegean.next>
 
         <version.mysql>8.0.16</version.mysql>
         <version.mybatis-plus>3.3.2</version.mybatis-plus>
