@@ -12,7 +12,7 @@
     <artifactId>nirvana-member</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>nirvana-member-base</module>
+        <module>nirvana-member-store</module>
         <module>nirvana-member-crm</module>
         <module>nirvana-member-social</module>
         <module>nirvana-member-partner</module>
