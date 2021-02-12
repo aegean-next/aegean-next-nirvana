@@ -18,12 +18,7 @@
 
 package tech.aegean.next.nirvana.member.base.service;
 
-import org.springframework.web.bind.annotation.RequestBody;
-import tech.aegean.next.nirvana.member.base.entity.login.MemberLoginRequest;
-import tech.aegean.next.nirvana.member.base.entity.login.MemberLoginResult;
-import tech.aegean.next.origin.base.entity.Result;
 
 public interface MemberLoginService {
 
-    Result<MemberLoginResult> login(MemberLoginRequest memberLoginRequest);
 }

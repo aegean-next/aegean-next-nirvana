@@ -23,8 +23,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tech.aegean.next.nirvana.member.base.entity.login.MemberLoginRequest;
 import tech.aegean.next.nirvana.member.base.entity.login.MemberLoginResult;
-import tech.aegean.next.origin.base.entity.Result;
-import tech.aegean.next.origin.member.model.Member;
 import tech.aegean.next.origin.member.service.MemberService;
 
 @Service
@@ -33,10 +31,4 @@ public class MemberLoginServiceImpl implements MemberLoginService {
     @Autowired
     private MemberService memberService;
 
-    @Override
-    public Result<MemberLoginResult> login(MemberLoginRequest memberLoginRequest) {
-
-        memberService.getOne(Wrappers.<Member>lambdaQuery().eq(Member::getMobile, 31));
-        return null;
-    }
 }
