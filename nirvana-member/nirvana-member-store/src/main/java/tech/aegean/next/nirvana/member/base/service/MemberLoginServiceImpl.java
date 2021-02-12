@@ -37,7 +37,7 @@ public class MemberLoginServiceImpl implements MemberLoginService {
     @Override
     public Result<MemberLoginResult> login(MemberLoginRequest memberLoginRequest) {
 
-        memberService.getOne(Wrappers.<Member>lambdaQuery().eq(Member::getMobile, 31))
+        memberService.getOne(Wrappers.<Member>lambdaQuery().eq(Member::getMobile, 31));
         return null;
     }
 }
