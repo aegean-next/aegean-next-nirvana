@@ -20,13 +20,32 @@
     </modules>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-        <version.aegean.next>1.0.0-SNAPSHOT</version.aegean.next>
-        <version.servlet-api>4.0.1</version.servlet-api>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <license.licenseName>apache_v2</license.licenseName>
+        <license.verbose>false</license.verbose>
+        <license.failOnMissing>true</license.failOnMissing>
+        <license.failOnUnknown>true</license.failOnUnknown>
+        <license.failIfWarning>true</license.failIfWarning>
+        <license.failOnForbidden>true</license.failOnForbidden>
+        <license.organizationName>${project.name}</license.organizationName>
+        <license.sectionDelimiter>#</license.sectionDelimiter>
+        <license.processStartTag>Start tag</license.processStartTag>
+        <license.processEndTag>End tag</license.processEndTag>
+        <aegean.next.origin>1.0.0-SNAPSHOT</aegean.next.origin>
+
         <version.mysql>8.0.16</version.mysql>
         <version.mybatis-plus>3.3.2</version.mybatis-plus>
         <version.druid>1.1.22</version.druid>
+        <version.lombok>1.18.12</version.lombok>
+        <version.servlet-api>4.0.1</version.servlet-api>
+        <version.validation-api>2.0.1.Final</version.validation-api>
+
+        <!-- 工具依赖 -->
+        <version.guava>30.1-jre</version.guava>
+        <version.redisson>3.14.1</version.redisson>
+        <version.hutool>5.4.4</version.hutool>
     </properties>
 
     <profiles>
@@ -100,5 +119,91 @@
             <version>${version.mysql}</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <!-- 打包时跳过测试 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <useReleaseProfile>false</useReleaseProfile>
+                    <releaseProfiles>release</releaseProfiles>
+                    <goals>deploy</goals>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.0.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <!-- JDK8必须使用下面的配置 -->
+                        <configuration>
+                            <encoding>UTF-8</encoding>
+                            <charset>UTF-8</charset>
+                            <additionalparam>-Xdoclint:none</additionalparam>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
