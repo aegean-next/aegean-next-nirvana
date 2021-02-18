@@ -19,6 +19,87 @@
         <module>nirvana-offline</module>
     </modules>
 
+    <name>aegean-next-nirvana</name>
+    <url>https://next.aegean.tech</url>
+    <inceptionYear>2020</inceptionYear>
+    <description>aegean-next-nirvana</description>
+    <!-- 许可证 -->
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <!-- 仓库地址 -->
+    <scm>
+        <tag>master</tag>
+        <url>https://github.com/aegean-next/aegean-next-nirvana</url>
+        <connection>https://github.com/aegean-next/aegean-next-nirvana.git</connection>
+        <developerConnection>https://github.com/aegean-next/aegean-next-nirvana.git</developerConnection>
+    </scm>
+
+    <!-- 问题管理系统 -->
+    <issueManagement>
+        <system>GitHub Issue Management</system>
+        <url>https://github.com/aegean-next/aegean-next-nirvana/issues</url>
+    </issueManagement>
+
+    <!-- 发布管理，要想发布到中央库就必须要配置的一个节点，以下两个链接可以从issue审核结果中找到 -->
+    <!-- 其中id为自定义，后面会在maven/config/settings.xml中配置对应的服务器信息 -->
+    <profiles>
+        <profile>
+            <id>sonatype</id>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>sonatype</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+                </snapshotRepository>
+                <repository>
+                    <id>sonatype</id>
+                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+                </repository>
+            </distributionManagement>
+            <build>
+                <plugins>
+                    <!-- 以下都为上传jar默认配置不做修改 -->
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.8</version>
+                        <!-- autoReleaseAfterClose的值为true，则脚本会自动完成在平台上close、release的操作，至此你将成功发布了 -->
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>sonatype</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>github</id>
+            <distributionManagement>
+                <repository>
+                    <id>github</id>
+                    <url>https://maven.pkg.github.com/aegean-next/aegean-next-origin</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+    </profiles>
+
+    <!-- 开发者列表，个人的话就写自己，团队就罗列所有成员 -->
+    <developers>
+        <developer>
+            <name>rainyblossom</name>
+            <email>rainyblossom@163.com</email>
+            <timezone>GMT+8</timezone>
+            <url>https://github.com/rainyblossom</url>
+        </developer>
+    </developers>
+
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

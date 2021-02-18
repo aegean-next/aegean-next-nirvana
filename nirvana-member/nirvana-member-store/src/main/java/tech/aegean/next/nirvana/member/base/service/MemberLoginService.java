@@ -22,6 +22,9 @@ package tech.aegean.next.nirvana.member.base.service;
 import tech.aegean.next.nirvana.member.base.entity.login.MemberLoginRequest;
 import tech.aegean.next.nirvana.member.base.entity.login.MemberLoginResult;
 
+/**
+ * @author rainyblossom
+ */
 public interface MemberLoginService {
 
     MemberLoginResult login(MemberLoginRequest memberLoginRequest);
