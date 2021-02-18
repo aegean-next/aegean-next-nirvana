@@ -16,33 +16,31 @@
  * Or see the code warehouse at https://github.com/aegean-next, https://gitee.com/aegean-next.
  */
 
-package tech.aegean.next.nirvana.member.base.hanlder.login.invoke;
+package tech.aegean.next.nirvana.member.base.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import tech.aegean.next.nirvana.member.base.constant.MemberLoginSourceEnum;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import tech.aegean.next.nirvana.member.base.entity.login.MemberLoginRequest;
-import tech.aegean.next.nirvana.member.base.hanlder.login.MemberLoginHandler;
-import tech.aegean.next.nirvana.member.base.hanlder.login.MemberLoginOnlineStoreHandler;
+import tech.aegean.next.nirvana.member.base.entity.login.MemberLoginResult;
+import tech.aegean.next.nirvana.member.base.service.MemberLoginService;
 
-/**
- * 用户登录的默认实现
- * 如果未来有更丰富的登录业务扩展，可以重写实现
- */
-@Component
-public class MemberLoginInvokeDefaultHandler implements MemberLoginInvokeHandler{
+@RestController
+@RequestMapping("/member")
+@Api(tags = "会员服务")
+public class MemberController {
 
     @Autowired
-    private MemberLoginOnlineStoreHandler onlineStoreHandler;
+    private MemberLoginService memberLoginService;
 
-    @Override
-    public MemberLoginHandler invoke(MemberLoginRequest memberLoginRequest) {
-        switch (MemberLoginSourceEnum.MEMBER_LOGIN_SOURCE_ONLINE_STORE.getLoginSource(memberLoginRequest.getSource())){
-            case MEMBER_LOGIN_SOURCE_ONLINE_STORE:
-                return onlineStoreHandler;
-            default:
-                return null;
-
-        }
+    @PostMapping("/login")
+    @ApiOperation(value ="登录接口", notes = "根据参数获取登录 Token.")
+    public MemberLoginResult login(@RequestBody MemberLoginRequest memberLoginRequest) {
+        return memberLoginService.login(memberLoginRequest);
     }
+
 }

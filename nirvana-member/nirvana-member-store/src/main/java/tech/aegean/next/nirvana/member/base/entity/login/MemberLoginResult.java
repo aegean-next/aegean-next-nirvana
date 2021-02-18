@@ -18,12 +18,16 @@
 
 package tech.aegean.next.nirvana.member.base.entity.login;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import tech.aegean.next.origin.base.entity.BaseResponse;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class MemberLoginResult extends BaseResponse {
 
     /**

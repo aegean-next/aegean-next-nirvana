@@ -16,26 +16,33 @@
  * Or see the code warehouse at https://github.com/aegean-next, https://gitee.com/aegean-next.
  */
 
-package tech.aegean.next.nirvana.member.base.hanlder.login;
+package tech.aegean.next.nirvana.member.base.handler.login.invoke;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import tech.aegean.next.nirvana.member.base.constant.MemberLoginSourceEnum;
 import tech.aegean.next.nirvana.member.base.entity.login.MemberLoginRequest;
-import tech.aegean.next.nirvana.member.base.entity.login.MemberLoginResult;
+import tech.aegean.next.nirvana.member.base.handler.login.MemberLoginHandler;
+import tech.aegean.next.nirvana.member.base.handler.login.MemberLoginOnlineStoreHandler;
 
 /**
- * 在线商城登录业务
+ * 用户登录的默认实现
+ * 如果未来有更丰富的登录业务扩展，可以重写实现
  */
 @Component
-public class MemberLoginOnlineStoreHandler extends MemberLoginAbstractHandler{
+public class MemberLoginInvokeDefaultHandler implements MemberLoginInvokeHandler{
 
-
-    @Override
-    public MemberLoginResult doLogin(MemberLoginRequest memberLoginRequest) {
-        return null;
-    }
+    @Autowired
+    private MemberLoginOnlineStoreHandler onlineStoreHandler;
 
     @Override
-    public MemberLoginResult doCheck(MemberLoginRequest memberLoginRequest) {
-        return super.doCheck(memberLoginRequest);
+    public MemberLoginHandler invoke(MemberLoginRequest memberLoginRequest) {
+        switch (MemberLoginSourceEnum.MEMBER_LOGIN_SOURCE_ONLINE_STORE.getLoginSource(memberLoginRequest.getSource())){
+            case MEMBER_LOGIN_SOURCE_ONLINE_STORE:
+                return onlineStoreHandler;
+            default:
+                return null;
+
+        }
     }
 }

@@ -18,30 +18,43 @@
 
 package tech.aegean.next.nirvana.member.base.entity.login;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import tech.aegean.next.origin.base.entity.BaseRequest;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@ApiModel(value = "会员模型", description = "会员基本信息")
 public class MemberLoginRequest extends BaseRequest {
 
     /** 登录渠道 必填 **/
+    @ApiModelProperty(value = "登录渠道 必填")
     private String source;
 
     /** 登录手机号 可选 **/
+    @ApiModelProperty(value = "登录手机号 可选")
     private String mobile;
 
     /** 登录邮箱 可选 **/
+    @ApiModelProperty(value = "登录邮箱 可选")
     private String email;
 
     /** 密码 可选 **/
+    @ApiModelProperty(value = "密码 可选")
     private String password;
 
     /** 短信验证码 可选 **/
+    @ApiModelProperty(value = "短信验证码 可选")
     private String smsVerifyCode;
 
     /** 图形验证码 可选 **/
+    @ApiModelProperty(value = "图形验证码 可选")
     private String picVerifyCode;
 
 

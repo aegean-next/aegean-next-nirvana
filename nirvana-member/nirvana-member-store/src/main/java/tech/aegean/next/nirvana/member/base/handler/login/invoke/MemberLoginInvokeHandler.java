@@ -16,14 +16,12 @@
  * Or see the code warehouse at https://github.com/aegean-next, https://gitee.com/aegean-next.
  */
 
-package tech.aegean.next.nirvana.member.base.service;
-
+package tech.aegean.next.nirvana.member.base.handler.login.invoke;
 
 import tech.aegean.next.nirvana.member.base.entity.login.MemberLoginRequest;
-import tech.aegean.next.nirvana.member.base.entity.login.MemberLoginResult;
+import tech.aegean.next.nirvana.member.base.handler.login.MemberLoginHandler;
 
-public interface MemberLoginService {
+public interface MemberLoginInvokeHandler {
 
-    MemberLoginResult login(MemberLoginRequest memberLoginRequest);
-
+    MemberLoginHandler invoke(MemberLoginRequest memberLoginRequest);
 }

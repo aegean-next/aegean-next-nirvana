@@ -16,12 +16,27 @@
  * Or see the code warehouse at https://github.com/aegean-next, https://gitee.com/aegean-next.
  */
 
-package tech.aegean.next.nirvana.member.base.hanlder.login.invoke;
+package tech.aegean.next.nirvana.member.base.handler.login;
 
 import tech.aegean.next.nirvana.member.base.entity.login.MemberLoginRequest;
-import tech.aegean.next.nirvana.member.base.hanlder.login.MemberLoginHandler;
+import tech.aegean.next.nirvana.member.base.entity.login.MemberLoginResult;
 
-public interface MemberLoginInvokeHandler {
+public interface MemberLoginHandler {
 
-    MemberLoginHandler invoke(MemberLoginRequest memberLoginRequest);
+    /**
+     * 登录业务
+     * 基于登录接口的登录业务必须实现此接口
+     * @param memberLoginRequest
+     * @return
+     */
+    MemberLoginResult doLogin(MemberLoginRequest memberLoginRequest);
+
+    /**
+     * 检查登录资格
+     * 提供默认实现，特定业务可重写
+     * @param memberLoginRequest
+     * @return
+     */
+    MemberLoginResult doCheck(MemberLoginRequest memberLoginRequest);
+
 }

@@ -16,27 +16,26 @@
  * Or see the code warehouse at https://github.com/aegean-next, https://gitee.com/aegean-next.
  */
 
-package tech.aegean.next.nirvana.member.base.hanlder.login;
+package tech.aegean.next.nirvana.member.base.handler.login;
 
+import org.springframework.stereotype.Component;
 import tech.aegean.next.nirvana.member.base.entity.login.MemberLoginRequest;
 import tech.aegean.next.nirvana.member.base.entity.login.MemberLoginResult;
 
-public interface MemberLoginHandler {
+/**
+ * 在线商城登录业务
+ */
+@Component
+public class MemberLoginOnlineStoreHandler extends MemberLoginAbstractHandler{
 
-    /**
-     * 登录业务
-     * 基于登录接口的登录业务必须实现此接口
-     * @param memberLoginRequest
-     * @return
-     */
-    MemberLoginResult doLogin(MemberLoginRequest memberLoginRequest);
 
-    /**
-     * 检查登录资格
-     * 提供默认实现，特定业务可重写
-     * @param memberLoginRequest
-     * @return
-     */
-    MemberLoginResult doCheck(MemberLoginRequest memberLoginRequest);
+    @Override
+    public MemberLoginResult doLogin(MemberLoginRequest memberLoginRequest) {
+        return null;
+    }
 
+    @Override
+    public MemberLoginResult doCheck(MemberLoginRequest memberLoginRequest) {
+        return super.doCheck(memberLoginRequest);
+    }
 }

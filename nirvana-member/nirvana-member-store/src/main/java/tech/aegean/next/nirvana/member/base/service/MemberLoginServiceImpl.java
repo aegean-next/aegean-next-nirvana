@@ -18,11 +18,13 @@
 
 package tech.aegean.next.nirvana.member.base.service;
 
+import cn.hutool.core.lang.Validator;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tech.aegean.next.nirvana.member.base.entity.login.MemberLoginRequest;
 import tech.aegean.next.nirvana.member.base.entity.login.MemberLoginResult;
+import tech.aegean.next.origin.member.model.Member;
 import tech.aegean.next.origin.member.service.MemberService;
 
 @Service
@@ -31,4 +33,12 @@ public class MemberLoginServiceImpl implements MemberLoginService {
     @Autowired
     private MemberService memberService;
 
+    @Override
+    public MemberLoginResult login(MemberLoginRequest memberLoginRequest) {
+        Member member = memberService.getOne(Wrappers.<Member>lambdaQuery().eq(Member::getMobile, memberLoginRequest.getMobile()), false);
+        if (Validator.isNotNull(member)){
+            return MemberLoginResult.builder().authorityToken(member.getMobile()).build();
+        }
+        return MemberLoginResult.builder().authorityToken("1234").build();
+    }
 }
