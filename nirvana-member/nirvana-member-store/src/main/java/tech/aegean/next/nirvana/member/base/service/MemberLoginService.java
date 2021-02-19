@@ -23,6 +23,7 @@ import tech.aegean.next.nirvana.member.base.entity.login.MemberLoginRequest;
 import tech.aegean.next.nirvana.member.base.entity.login.MemberLoginResult;
 
 /**
+ * 会员服务
  * @author rainyblossom
  */
 public interface MemberLoginService {
