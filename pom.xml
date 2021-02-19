@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>tech.aegean</groupId>
+    <groupId>tech.aegean.next</groupId>
     <artifactId>aegean-next-nirvana</artifactId>
     <packaging>pom</packaging>
     <version>AN-0.0.1</version>
