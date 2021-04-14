@@ -38,7 +38,7 @@ public class MemberController {
     private MemberLoginService memberLoginService;
 
     @PostMapping("/login")
-    @ApiOperation(value ="登录接口", notes = "根据参数获取登录 Token.")
+    @ApiOperation(value ="通用登录接口", notes = "为用户提供登录注册一体化接口")
     public MemberLoginResult login(@RequestBody MemberLoginRequest memberLoginRequest) {
         return memberLoginService.login(memberLoginRequest);
     }

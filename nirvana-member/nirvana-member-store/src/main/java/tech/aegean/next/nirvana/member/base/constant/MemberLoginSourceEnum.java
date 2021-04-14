@@ -24,25 +24,64 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * MemberLoginSourceEnum
+ * @author RainyBlossom
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 public enum MemberLoginSourceEnum {
 
-    MEMBER_LOGIN_SOURCE_ONLINE_STORE("ONLINE_STORE");
+    // Error
+    LOGIN_ERROR("ERROR", 0),
+
+    // Standard Login | 标准登录
+    LOGIN_STANDARD_ACCOUNT("STANDARD_ACCOUNT", 100),
+    LOGIN_STANDARD_QUICK("STANDARD_QUICK", 101),
+
+    // Social Login | 第三方登录方式
+    LOGIN_SOCIAL_QQ("SOCIAL_QQ", 200),
+    LOGIN_SOCIAL_WECHAT_PLATFORM("SOCIAL_WECHAT_PLATFORM", 201),
+    LOGIN_SOCIAL_WECHAT_PROGRAM("SOCIAL_WECHAT_PROGRAM", 202),
+    LOGIN_SOCIAL_WEIBO("SOCIAL_WEIBO", 203),
+    LOGIN_SOCIAL_ALIPAY("SOCIAL_ALIPAY", 204),
+
+    // Global Login | 国际登录方式
+    LOGIN_GLOBAL_APPLE("SOCIAL_APPLE", 300),
+    LOGIN_GLOBAL_LINE("GLOBAL_LINE", 301),
+    LOGIN_GLOBAL_FACKBOOK("GLOBAL_FACKBOOK", 302),
+    LOGIN_GLOBAL_GITHUB("GLOBAL_GITHUB", 303),
+
+    ;
 
     @Getter
     @Setter
-    private String source;
+    private String name;
 
-    public MemberLoginSourceEnum getLoginSource(String source){
-        if (Validator.isNotNull(source)){
+    @Getter
+    @Setter
+    private Integer value;
+
+    public static MemberLoginSourceEnum getLoginEnum(String name){
+        if (Validator.isNotNull(name)){
             for (MemberLoginSourceEnum loginSourceEnum : MemberLoginSourceEnum.values()){
-                if (loginSourceEnum.getSource().equals(source)){
+                if (loginSourceEnum.getName().equals(name)){
                     return loginSourceEnum;
                 }
             }
         }
-        return null;
+        return MemberLoginSourceEnum.LOGIN_ERROR;
+    }
+
+    public static MemberLoginSourceEnum getLoginEnum(Integer value){
+        if (Validator.isNotNull(value)){
+            for (MemberLoginSourceEnum loginSourceEnum : MemberLoginSourceEnum.values()){
+                if (loginSourceEnum.getValue().equals(value)){
+                    return loginSourceEnum;
+                }
+            }
+        }
+        return MemberLoginSourceEnum.LOGIN_ERROR;
     }
 
 }

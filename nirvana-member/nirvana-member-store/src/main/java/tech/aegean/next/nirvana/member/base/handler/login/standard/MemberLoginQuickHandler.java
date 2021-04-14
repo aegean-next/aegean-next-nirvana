@@ -16,28 +16,22 @@
  * Or see the code warehouse at https://github.com/aegean-next, https://gitee.com/aegean-next.
  */
 
-package tech.aegean.next.nirvana.member.base.entity.login;
+package tech.aegean.next.nirvana.member.base.handler.login.standard;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import tech.aegean.next.origin.base.entity.BaseResponse;
+import org.springframework.stereotype.Component;
+import tech.aegean.next.nirvana.member.base.entity.login.MemberLoginRequest;
+import tech.aegean.next.nirvana.member.base.entity.login.MemberLoginResult;
+import tech.aegean.next.nirvana.member.base.handler.login.MemberLoginAbstractHandler;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class MemberLoginResult extends BaseResponse {
+/**
+ * 在线商城登录业务
+ */
+@Component
+public class MemberLoginQuickHandler extends MemberLoginAbstractHandler {
 
-    /**
-     * 是否已注册
-     */
-    private Boolean isRegistered;
 
-    /**
-     * 授权 Token
-     */
-    private String authorityToken;
-
+    @Override
+    public MemberLoginResult doLogin(MemberLoginRequest memberLoginRequest) {
+        return null;
+    }
 }

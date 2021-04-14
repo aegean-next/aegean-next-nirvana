@@ -18,31 +18,40 @@
 
 package tech.aegean.next.nirvana.member.base.handler.login.invoke;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import tech.aegean.next.nirvana.member.base.constant.MemberLoginSourceEnum;
 import tech.aegean.next.nirvana.member.base.entity.login.MemberLoginRequest;
 import tech.aegean.next.nirvana.member.base.handler.login.MemberLoginHandler;
-import tech.aegean.next.nirvana.member.base.handler.login.MemberLoginOnlineStoreHandler;
+import tech.aegean.next.nirvana.member.base.handler.login.social.MemberLoginQQHandler;
+import tech.aegean.next.nirvana.member.base.handler.login.standard.MemberLoginAccountHandler;
+import tech.aegean.next.nirvana.member.base.handler.login.standard.MemberLoginQuickHandler;
 
 /**
- * 用户登录的默认实现
- * 如果未来有更丰富的登录业务扩展，可以重写实现
+ * 国际方式登录
+ * @author rainyblossom
  */
 @Component
+@RequiredArgsConstructor
 public class MemberLoginInvokeDefaultHandler implements MemberLoginInvokeHandler{
 
-    @Autowired
-    private MemberLoginOnlineStoreHandler onlineStoreHandler;
+    private final @NonNull MemberLoginAccountHandler accountHandler;
+
+    private final @NonNull MemberLoginQuickHandler quickHandler;
+
+    private final @NonNull MemberLoginQQHandler qqHandler;
 
     @Override
     public MemberLoginHandler invoke(MemberLoginRequest memberLoginRequest) {
-        switch (MemberLoginSourceEnum.MEMBER_LOGIN_SOURCE_ONLINE_STORE.getLoginSource(memberLoginRequest.getSource())){
-            case MEMBER_LOGIN_SOURCE_ONLINE_STORE:
-                return onlineStoreHandler;
-            default:
-                return null;
-
+        switch (MemberLoginSourceEnum.getLoginEnum(memberLoginRequest.getSource())){
+            case LOGIN_STANDARD_ACCOUNT:
+                return accountHandler;
+            case LOGIN_STANDARD_QUICK:
+                return quickHandler;
+            case LOGIN_SOCIAL_QQ:
+                return qqHandler;
         }
+        return null;
     }
 }

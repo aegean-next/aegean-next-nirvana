@@ -16,28 +16,21 @@
  * Or see the code warehouse at https://github.com/aegean-next, https://gitee.com/aegean-next.
  */
 
-package tech.aegean.next.nirvana.member.base.entity.login;
+package tech.aegean.next.nirvana.member.base.service;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import tech.aegean.next.origin.base.entity.BaseResponse;
-
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class MemberLoginResult extends BaseResponse {
+/**
+ * MemberTokenService
+ *
+ * @author RainyBlossom
+ * @date 2021/4/13
+ */
+public interface MemberTokenService {
 
     /**
-     * 是否已注册
+     * Token 生成器
+     * @param isTourist
+     * @return
      */
-    private Boolean isRegistered;
-
-    /**
-     * 授权 Token
-     */
-    private String authorityToken;
+    String tokenGenerator(String key, Boolean isTourist);
 
 }

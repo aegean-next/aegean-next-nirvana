@@ -16,12 +16,13 @@
  * Or see the code warehouse at https://github.com/aegean-next, https://gitee.com/aegean-next.
  */
 
-package tech.aegean.next.nirvana.member.base.handler.login;
+package tech.aegean.next.nirvana.member.base.handler.login.social;
 
 import tech.aegean.next.nirvana.member.base.entity.login.MemberLoginRequest;
 import tech.aegean.next.nirvana.member.base.entity.login.MemberLoginResult;
+import tech.aegean.next.nirvana.member.base.handler.login.MemberLoginAbstractHandler;
 
-public class MemberLoginWechatHandler extends MemberLoginAbstractHandler{
+public class MemberLoginQQHandler extends MemberLoginAbstractHandler {
 
     @Override
     public MemberLoginResult doLogin(MemberLoginRequest memberLoginRequest) {

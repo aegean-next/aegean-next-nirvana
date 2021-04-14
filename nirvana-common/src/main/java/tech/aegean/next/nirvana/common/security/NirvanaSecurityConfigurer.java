@@ -16,26 +16,25 @@
  * Or see the code warehouse at https://github.com/aegean-next, https://gitee.com/aegean-next.
  */
 
-package tech.aegean.next.nirvana.member.base.handler.login;
+package tech.aegean.next.nirvana.common.security;
 
-import org.springframework.stereotype.Component;
-import tech.aegean.next.nirvana.member.base.entity.login.MemberLoginRequest;
-import tech.aegean.next.nirvana.member.base.entity.login.MemberLoginResult;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 /**
- * 在线商城登录业务
+ * NirvanaSecurityConfigurerAdapter
+ *
+ * @author RainyBlossom
+ * @date 2021/4/13
  */
-@Component
-public class MemberLoginOnlineStoreHandler extends MemberLoginAbstractHandler{
-
-
-    @Override
-    public MemberLoginResult doLogin(MemberLoginRequest memberLoginRequest) {
-        return null;
-    }
+@Configuration
+@Order(1)
+public class NirvanaSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Override
-    public MemberLoginResult doCheck(MemberLoginRequest memberLoginRequest) {
-        return super.doCheck(memberLoginRequest);
+    protected void configure(AuthenticationManagerBuilder auth){
+        auth.authenticationProvider(new TokenAuthenticationProvider());
     }
 }

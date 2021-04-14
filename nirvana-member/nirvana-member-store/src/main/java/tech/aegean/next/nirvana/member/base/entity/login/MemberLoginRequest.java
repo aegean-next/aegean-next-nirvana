@@ -20,12 +20,13 @@ package tech.aegean.next.nirvana.member.base.entity.login;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import tech.aegean.next.origin.base.entity.BaseRequest;
 
+/**
+ * MemberLoginRequest
+ * @author rainyblossom
+ */
 @Data
 @Builder
 @NoArgsConstructor
@@ -56,6 +57,5 @@ public class MemberLoginRequest extends BaseRequest {
     /** 图形验证码 可选 **/
     @ApiModelProperty(value = "图形验证码 可选")
     private String picVerifyCode;
-
 
 }

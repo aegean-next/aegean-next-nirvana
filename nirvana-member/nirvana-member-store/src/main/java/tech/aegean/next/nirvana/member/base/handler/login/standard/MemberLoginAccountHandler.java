@@ -16,28 +16,37 @@
  * Or see the code warehouse at https://github.com/aegean-next, https://gitee.com/aegean-next.
  */
 
-package tech.aegean.next.nirvana.member.base.service;
+package tech.aegean.next.nirvana.member.base.handler.login.standard;
 
+import cn.hutool.core.lang.Validator;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import tech.aegean.next.nirvana.member.base.entity.login.MemberLoginRequest;
 import tech.aegean.next.nirvana.member.base.entity.login.MemberLoginResult;
-import tech.aegean.next.nirvana.member.base.handler.login.invoke.MemberLoginInvokeHandler;
+import tech.aegean.next.nirvana.member.base.handler.login.MemberLoginAbstractHandler;
+import tech.aegean.next.origin.base.constant.CommonStatusEnum;
+import tech.aegean.next.origin.member.model.Member;
+import tech.aegean.next.origin.member.service.MemberService;
 
 /**
- * MemberLoginServiceImpl
- * 用户登录服务
- * @author rainyblossom
+ * 在线商城登录业务
  */
 @Component
 @RequiredArgsConstructor
-public class MemberLoginServiceImpl implements MemberLoginService {
+public class MemberLoginAccountHandler extends MemberLoginAbstractHandler {
 
-    private final @NonNull MemberLoginInvokeHandler invokeHandler;
+    private final @NonNull MemberService memberService;
 
     @Override
-    public MemberLoginResult login(MemberLoginRequest memberLoginRequest) {
-        return invokeHandler.invoke(memberLoginRequest).doLogin(memberLoginRequest);
+    public MemberLoginResult doLogin(MemberLoginRequest memberLoginRequest) {
+        // 通过 e-mail 查询是否存在该用户
+        Member member = memberService.getOne(Wrappers.<Member>lambdaQuery().eq(Member::getEmail, memberLoginRequest.getEmail()), false);
+        if (Validator.isNull(member) || !CommonStatusEnum.COMMON_STATUS_ENUM_ON.equals(member.getStatus())){
+            return MemberLoginResult.builder().isRegistered(false).build();
+        }
+
+        return null;
     }
 }

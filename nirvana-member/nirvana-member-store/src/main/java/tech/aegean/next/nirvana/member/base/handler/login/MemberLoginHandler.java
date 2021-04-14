@@ -21,6 +21,10 @@ package tech.aegean.next.nirvana.member.base.handler.login;
 import tech.aegean.next.nirvana.member.base.entity.login.MemberLoginRequest;
 import tech.aegean.next.nirvana.member.base.entity.login.MemberLoginResult;
 
+/**
+ * MemberLoginHandler
+ *
+ */
 public interface MemberLoginHandler {
 
     /**
@@ -30,13 +34,5 @@ public interface MemberLoginHandler {
      * @return
      */
     MemberLoginResult doLogin(MemberLoginRequest memberLoginRequest);
-
-    /**
-     * 检查登录资格
-     * 提供默认实现，特定业务可重写
-     * @param memberLoginRequest
-     * @return
-     */
-    MemberLoginResult doCheck(MemberLoginRequest memberLoginRequest);
 
 }
